@@ -12,9 +12,9 @@ public class distinctby {
     return Gatherer.ofSequential(
         () -> new HashSet<U>(),
         Gatherer.Integrator.ofGreedy((seen, element, downstream) -> {
-          U key = keyExtractor.apply(element);
-          if (seen.add(key)) {
-            return downstream.push(element);
+          U key = keyExtractor.apply(element);  // 키 추출
+          if (seen.add(key)) { // 처음 보는 키인가?
+            return downstream.push(element);  // 처음이면, push
           }
           return true;
         })
